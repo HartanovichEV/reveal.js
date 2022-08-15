@@ -16,52 +16,206 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-            <section>
+        <section>
 					<h3>Inheritance in JS</h3>
 					<p>
 						<small>Created by <a href="https://github.com/HartanovichEV">Ekaterina Hartanovich</a></small>
 					</p>
 				</section>
-            <section>
-               <h3>OOPs Concepts:</h3>
-               <ul>
-                  <li>Encapsulation</li>
-                  <li>Abstraction</li>
-                  <li>Polymorphism</li>
-                  <li style="text-decoration: underline;">Inheritance</li>
-               </ul>
-            </section>
+        
+        <section>
+          <h3>OOPs Concepts:</h3>
+          <ul>
+            <li>Encapsulation</li>
+            <li>Abstraction</li>
+            <li>Polymorphism</li>
+            <li style="text-decoration: underline;">Inheritance</li>
+          </ul>
+        </section>
+
 				<section >
-               <section>
-                  <h3>Inheritance:</h3>
-                  ... can be defined as the process where one class acquires the properties (methods and fields) of another.
-               </section>               
-            </section>
+          <section>
+            <h3>Inheritance:</h3>
+            ... can be defined as the process where one class or object acquires the properties (methods and fields) of another.
+          </section>
+          <section>
+            <h3>Why the need for inheritance?</h3>
+            ... inheritance solves the problem of data and logic duplication. By inheriting, objects can share properties and methods without the need of manually setting those properties and methods on each object.
+          </section>                
+        </section>
+
+				<section >
+          <section class="section-1">
+            <h3>Inheritance in JS:</h3>
+            <p>JavaScript only has one construct: objects.</p>
+            <p>An object can inherit properties of another object. The object from where the properties are inherited is called the <span style="font-weight: bold; color: blueviolet;">prototype</span>.</p>
+          </section>
+          <section>
+            <h3>Prototype Recap:</h3>
+            <p>The JavaScript assigns it to the <span style="background-color: #999;">[[Prototype]]</span> property of the object when it creates it. </p>
+            <p>The <span style="background-color: #999;">[[Prototype]]</span> is the internal property and is hidden from us. This Property points to the Prototype Object or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null">Null</a>.</p>
+            <p>We cannot access the <span style="background-color: #999;">[[Prototype]]</span> directly. But we can access it either by using the <span style="background-color: #999;">__proto__</span> property or using the <span style="background-color: #999;">getPrototypeOf</span> method of the Object</p>
+          </section>
+          <section>
+            <h3>Prototype chain:</h3>
+            <p>Prototype object has a prototype of its own, <span style="font-size: 25px;">and so on... </span></p>
+            <p>until an object is reached with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null">null</a> as its prototype.</p>
+            <br>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null">Null</a> has no prototype, and acts as the final link in this prototype chain.</p>
+            <p style="font-size: 25px;">Inheritance in JS is called Prototypal Inheritance</p>
+          </section>
+          <section>
+            <h3>Prototypal Inheritance vs Classical Inheritance</h3>
+            <img width="880" height="397" data-src="https://res.cloudinary.com/practicaldev/image/fetch/s--P-uVQjti--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/ii4vwgaxg6jyt8e19zpd.png" alt="Prototypal Inheritance vs Classical Inheritance">
+            <div style="position: absolute; right: 40px; font-size: 25px;">Source <a href="https://dev.to/crishanks/classical-vs-prototypal-inheritance-2o5a">Classical vs. Prototypal Inheritance</a></div>
+          </section>                
+        </section>
+
+        <section>
+          <section>
+            <h3>Inheritance with the prototype chain</h3>            
+          </section>
+          <section>
+            <h3>Inheriting properties and "methods":</h3>
+            <p>Every object in JavaScript has an internal property called <span style="background-color: #999;">[[Prototype]]</span>. Example:</p>
+            <br>
+            <small>If we create an array and log it to the console like this:</small>
+            <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+              const arr = [1,2,3]
+              console.log(arr)
+            </code></pre> 
+            <small>We will see this:</small> 
+            <br>
+            <img src="https://www.freecodecamp.org/news/content/images/2022/05/image.png" alt="[[Prototype]] in console" style="text-align: center;">            
+          </section>
+          <section>
+            <ul>
+              <li>Property is not only searched in the object itself. It's also searched in the prototype of the object, in the prototype of the prototype, and so on – until a property is found that matches the name or the end of the prototype chain is reached.</li> 
+              <br>
+              <li>JavaScript does not have "methods" in the form that class-based languages define them. In JavaScript, any function can be added to an object in the form of a property.</li>  
+            </ul>
+          </section>
+          <section>
+            Example:
+            <img width="880" height="397" data-src="https://miro.medium.com/max/1400/1*_5mSP1RRSgjGW4YoMILUgw.png" alt="Example">
+            <div style="position: absolute; right: 40px; font-size: 25px;">Source <a href="https://levelup.gitconnected.com/a-guide-to-prototype-based-class-inheritance-in-javascript-e2e30c2c92b4">A Guide To Prototype-Based Class Inheritance In JS</a></div>
+          </section>
+        </section>
+
+        <section class="last">
+          <section>
+            <h3>Creating objects with Prototype</h3>
+          </section>
+          <section>
+            <h3>Objects Created with Literal Syntax:</h3>
+            <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+              var person = { name: "Bill Gates"};
+              
+              //prototype chain
+              //person --> Object.prototype --> null
+            </code></pre>
+            <p>The following example creates <span style="background-color: #999;">person</span> object using the object literal syntax. The objects created using the literal syntax gets the Object.prototype as its <span style="background-color: #999;">[[Prototype]]</span></p> 
+          </section>
+          <section>
+            <h3>Objects from constructor functions:</h3>
+            <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+              var Person = function (firstName, lastName) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+              };
+              
+              Person.prototype.sayHi = function () {
+                console.log(" Hello " + this.firstName + " " + this.lastName);
+              };
+              
+              var john = new Person("John","Dyer")
+              console.log(john);
+              john.sayHi();              
+              var bill= new Person("Bill","Gates")
+              console.log(bill);
+              bill.sayHi();
+            </code></pre>
+            <p>...</p>
+          </section>
+          <section>
+            <p>...</p>
+            <small>We have only one instance of Person.prototype object in the memory. The prototype Property of the function point to it. The <span style="background-color: #999;">[[Prototype]]</span> property of the john & bill objects also point to it.</small>
+            <img width="466" height="366" data-src="https://www.tektutorialshub.com/wp-content/uploads/2021/05/Javascript-inheritance-example.png" alt="Example">
+            <p>...</p>
+          </section>
+          <section>
+            <p>...</p>
+            <small>You will find them in the <span style="background-color: #999;">__proto__</span> property of both john & bill objects. Both these methods actually point to the Person.prototype object. You can use the === to check if they are equal.</small>
+            <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+              console.log(john.__proto__ === Person.prototype)  
+              //true
+              
+              console.log(bill.__proto__ === Person.prototype)
+              //true
+            </code></pre>
+            <small>We have only one instance of Person.prototype object in the memory. The prototype Property of the function point to it. The <span style="background-color: #999;">[[Prototype]]</span> property of the john & bill objects also point to it.</small>
+            <p>...</p>
+          </section>
+          <section>
+            <h3>With Object.create:</h3>
+            <p>Using <span style="background-color: #999;">Object.create</span> method allows us to specify the prototype of the newly created object.</p>
+            <small>In the following example, we use Object.create to create obj2 using the obj1 as prototype:</small>
+            <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+              var obj1 = {a: 1};  
+                            
+              var obj2 = Object.create(obj1);
+              // obj2 ---> obj1 ---> Object.prototype ---> null
+
+              console.log(obj2.a); 
+ 
+              // 1  inheritated from obj1
+            </code></pre>
+            <small>You can create an object without a prototype by Passing the Null as the argument.:</small>
+            <pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+              Object.create(null).
+            </code></pre>
+          </section>        
+        </section>
+        <section>
+          <h3>Note:</h3>
+          <ul style="font-size: 30px;">
+            <li>The references can not go in circles. JavaScript will throw an error if we try to assign <span style="background-color: #999;">__proto__</span> in a circle.</li>
+            <br>
+            <li>No matter where the method is found: in an object or its prototype. In a method call, <span style="background-color: #999;">this</span> is always the object before the dot.</li>
+            <br>
+            <li><span style="background-color: #999;">__proto__</span> is a historical getter/setter for <span style="background-color: #999;">[[Prototype]]</span></li>
+            <br>
+            <li>Write/delete operations act directly on the object, they do not use the prototype (assuming it is a data property, not a setter).</li>
+            <br>
+            <li>The <span style="background-color: #999;">for..in</span> loop iterates over both its own and its inherited properties. All other key/value-getting methods only operate on the object itself.</li>
+          </ul>
+        </section>
+        
 				<section>
-               <section>
-                  <h3> Advantages and Disadvantages of inheritance</h3>
-               </section>
-               <section>
-                  <h3>Advantages of inheritance are as follows:</h3>
-                  <ul>
-                     <li class="fragment">Promotes reusability. When a class inherits or derives another class, it can access all the functionality of inherited class.</li>
-                     <li class="fragment">Reusability enhanced reliability. The base class code will be already tested and debugged.</li>
-                     <li class="fragment">As the existing code is reused, it leads to less development and maintenance costs.</li>
-                     <li class="fragment">Makes the sub classes follow a standard interface.</li>
-                     <li class="fragment">Helps to reduce code redundancy and supports code extensibility.</li>
-                     <li class="fragment">Facilitates creation of class libraries.</li>
-                  </ul>
-               </section>
-               <section>
-                  <h3>Disadvantages of inheritance are as follows:</h3>
-                  <ul>
-                     <li class="fragment">Inherited functions work slower than normal function as there is indirection.</li>
-                     <li class="fragment">Improper use of inheritance may lead to wrong solutions.</li>
-                     <li class="fragment">Often, data members in the base class are left unused which may lead to memory wastage.</li>
-                     <li class="fragment">Inheritance increases the coupling between base class and derived class. A change in base class will affect all the child classes.</li>
-                  </ul>
-               </section>
-            </section>
+          <section>
+            <h3> Advantages and Disadvantages of inheritance</h3>
+          </section>
+          <section>
+            <h3>Advantages of inheritance are as follows:</h3>
+            <ul>
+              <li class="fragment">Promotes reusability. When a class inherits or derives another class, it can access all the functionality of inherited class.</li>
+              <li class="fragment">Reusability enhanced reliability. The base class code will be already tested and debugged.</li>
+              <li class="fragment">As the existing code is reused, it leads to less development and maintenance costs.</li>
+              <li class="fragment">Makes the sub classes follow a standard interface.</li>
+              <li class="fragment">Helps to reduce code redundancy and supports code extensibility.</li>
+              <li class="fragment">Facilitates creation of class libraries.</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Disadvantages of inheritance are as follows:</h3>
+            <ul>
+              <li class="fragment">Inherited functions work slower than normal function as there is indirection.</li>
+              <li class="fragment">Improper use of inheritance may lead to wrong solutions.</li>
+              <li class="fragment">Often, data members in the base class are left unused which may lead to memory wastage.</li>
+              <li class="fragment">Inheritance increases the coupling between base class and derived class. A change in base class will affect all the child classes.</li>
+            </ul>
+          </section>
+        </section>
 			</div>
 		</div>
 
