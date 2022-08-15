@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/league.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,8 +16,52 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+            <section>
+					<h3>Inheritance in JS</h3>
+					<p>
+						<small>Created by <a href="https://github.com/HartanovichEV">Ekaterina Hartanovich</a></small>
+					</p>
+				</section>
+            <section>
+               <h3>OOPs Concepts:</h3>
+               <ul>
+                  <li>Encapsulation</li>
+                  <li>Abstraction</li>
+                  <li>Polymorphism</li>
+                  <li style="text-decoration: underline;">Inheritance</li>
+               </ul>
+            </section>
+				<section >
+               <section>
+                  <h3>Inheritance:</h3>
+                  ... can be defined as the process where one class acquires the properties (methods and fields) of another.
+               </section>               
+            </section>
+				<section>
+               <section>
+                  <h3> Advantages and Disadvantages of inheritance</h3>
+               </section>
+               <section>
+                  <h3>Advantages of inheritance are as follows:</h3>
+                  <ul>
+                     <li class="fragment">Promotes reusability. When a class inherits or derives another class, it can access all the functionality of inherited class.</li>
+                     <li class="fragment">Reusability enhanced reliability. The base class code will be already tested and debugged.</li>
+                     <li class="fragment">As the existing code is reused, it leads to less development and maintenance costs.</li>
+                     <li class="fragment">Makes the sub classes follow a standard interface.</li>
+                     <li class="fragment">Helps to reduce code redundancy and supports code extensibility.</li>
+                     <li class="fragment">Facilitates creation of class libraries.</li>
+                  </ul>
+               </section>
+               <section>
+                  <h3>Disadvantages of inheritance are as follows:</h3>
+                  <ul>
+                     <li class="fragment">Inherited functions work slower than normal function as there is indirection.</li>
+                     <li class="fragment">Improper use of inheritance may lead to wrong solutions.</li>
+                     <li class="fragment">Often, data members in the base class are left unused which may lead to memory wastage.</li>
+                     <li class="fragment">Inheritance increases the coupling between base class and derived class. A change in base class will affect all the child classes.</li>
+                  </ul>
+               </section>
+            </section>
 			</div>
 		</div>
 
@@ -31,6 +75,8 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+            progress: true,
+
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
